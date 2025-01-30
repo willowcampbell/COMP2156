@@ -9,7 +9,6 @@ script:
 
 before_deploy:
   - gem install bundler:2.4.22
-  - bundle update --bundler
 
 deploy:
   provider: pages
