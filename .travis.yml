@@ -23,8 +23,6 @@ before_deploy:
 
 deploy:
   skip_cleanup: true
-  provider: pages
-  github_token: $GITHUB_TOKEN
-  local_dir: deploy
+  provider: "empty"
   on:
     branch: main
