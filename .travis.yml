@@ -7,6 +7,10 @@ dist: focal
 script:
   - npm install
 
+before_deploy:
+  - gem install bundler:2.4.22
+  - bundle update --bundler
+
 deploy:
   provider: pages
   skip_cleanup: true
