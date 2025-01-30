@@ -6,7 +6,6 @@ dist: focal
 
 script:
   - npm install
-  - npm run build
 
 deploy:
   provider: pages
