@@ -3,11 +3,22 @@ node_js:
   - "stable"
 dist: focal
 
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - node_modules
+
 install:
   - npm install
+  - npm install -g yarn
 
 script:
-  - echo "No build step needed!"
+  #- yarn lint
+  - yarn build
+  - mv build/index.html build/404.html
 
 before_deploy:
   - rm -rf deploy
@@ -20,3 +31,12 @@ before_deploy:
   - git add .
   - git commit -m "Deploy to GitHub Pages"
   - git push --force "https://${GITHUB_TOKEN}@github.com/willowcampbell/COMP2156.git" main:gh-pages
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  local_dir: build
+  on:
+    branch: master
+  
