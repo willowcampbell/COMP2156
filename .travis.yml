@@ -14,9 +14,9 @@ cache:
 install:
   - npm install
   - npm install -g yarn
+  - yarn install
 
 script:
-  #- yarn lint
   - yarn build
   - mv build/index.html build/404.html
 
@@ -28,15 +28,12 @@ before_deploy:
   - git init
   - git config user.name "Travis CI"
   - git config user.email "travis@users.noreply.github.com"
-  - git add .
-  - git commit -m "Deploy to GitHub Pages"
-  - git push --force "https://${GITHUB_TOKEN}@github.com/willowcampbell/COMP2156.git" main:gh-pages
 
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $github_token
+  github_token: $GITHUB_TOKEN
   local_dir: build
+  keep_history: true
   on:
     branch: main
-  
